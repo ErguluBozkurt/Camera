@@ -23,3 +23,9 @@ Bu proje, Raspberry Pi 4 ve resmi kamera modülü kullanılarak geliştirilmiş,
 sudo raspi-config
 # Interface Options > Camera > Enable
 sudo reboot
+```
+## Kurulum
+
+1. Gerekli bağımlılıkları yükleyin:
+   ```bash
+   pip install -r requirements.txt

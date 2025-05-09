@@ -1,0 +1,40 @@
+###############################################################################
+# Temel Uygulama Bağımlılıkları
+###############################################################################
+
+# Flask Web Framework ve Eklentileri
+flask==2.3.2               # Web sunucu ve routing temel yapısı
+flask-basicauth==0.2.0     # HTTP Basic Authentication desteği
+Werkzeug==2.3.7            # Flask'ın alt yapısı (WSGI utility)
+jinja2==3.1.2              # Template engine
+
+###############################################################################
+# Kamera ve Görüntü İşleme
+###############################################################################
+
+# Picamera2 (Resmi Raspberry Pi Kamera Kütüphanesi)
+picamera2==0.3.14          # Hardware accelerated camera interface
+libcamera==0.0.12          # Picamera2 alt yapısı
+
+# OpenCV ve Bağımlılıkları
+opencv-python==4.8.0.76    # Görüntü işleme ve encode/decode
+numpy==1.24.4              # OpenCV array desteği
+
+###############################################################################
+# Güvenlik
+###############################################################################
+
+cryptography==41.0.3       # HTTPS için temel şifreleme
+pyopenssl==23.2.0          # SSL/TLS desteği
+
+
+###############################################################################
+# Notlar:
+# 1. Raspberry Pi OS'de önceden yüklü gelen paketler:
+#    - libatlas-base-dev
+#    - libopenjp2-7
+#    - libtiff5
+# 2. Donanım hızlandırma için ek paketler:
+#    - ffmpeg (sudo apt install ffmpeg)
+#    - libavcodec-dev
+###############################################################################

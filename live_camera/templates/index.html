@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raspberry Pi Sensör Takip Sistemi</title>
+    <title>Raspberry Pi Kamera Sistemi</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -18,67 +18,14 @@
         }
         
         .container {
-            display: flex;
             width: 90%;
-            max-width: 1200px;
+            max-width: 800px;
             background-color: #2a2a3b;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-        }
-
-        .video-container {
-            width: 40%;
             padding: 20px;
             text-align: center;
-            background-color: #1b1b2b;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .video-container img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 8px;
-            border: 3px solid #007bff;
-        }
-
-        .thermal-container {
-            margin-top: 15px;
-        }
-
-        .thermal-container img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 8px;
-            border: 3px solid #ff4500;
-        }
-
-        .data-container {
-            width: 60%;
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .box {
-            background-color: #3b3b5a;
-            border-radius: 8px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            margin: 10px;
-            width: 45%;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .box:hover {
-            transform: scale(1.05);
-            background-color: #4a4a6e;
         }
 
         h1 {
@@ -86,55 +33,22 @@
             background-color: #007bff;
             color: white;
             padding: 15px;
-            margin: 0;
-            width: 100%;
-        }
-    </style>
-    <script>
-        function fetchSensorData() {
-            fetch('/get_sensor_data')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("temperature").innerText = "🌡️ Sıcaklık: " + data.temperature + "°C";
-                    document.getElementById("pressure").innerText = "🔵 Basınç: " + data.pressure + " hPa";
-                    document.getElementById("altitude").innerText = "📏 Yükseklik: " + data.altitude + " m";
-                    
-                    document.getElementById("euler").innerText = `🔄 Euler Açıları: Yaw=${data.euler.yaw}°, Pitch=${data.euler.pitch}°, Roll=${data.euler.roll}°`;
-                    document.getElementById("acceleration").innerText = `⚡ İvme: X=${data.acceleration.x}, Y=${data.acceleration.y}, Z=${data.acceleration.z}`;
-                    document.getElementById("linear_acceleration").innerText = `🔀 Lineer İvme: X=${data.linear_acceleration.x}, Y=${data.linear_acceleration.y}, Z=${data.linear_acceleration.z}`;
-                    document.getElementById("quaternion").innerText = `🌀 Quaternion: W=${data.quaternion.w}, X=${data.quaternion.x}, Y=${data.quaternion.y}, Z=${data.quaternion.z}`;
-                    document.getElementById("angular_velocity").innerText = `🧭 Açısal Hız: X=${data.angular_velocity.x}, Y=${data.angular_velocity.y}, Z=${data.angular_velocity.z}`;
-                    document.getElementById("gravity").innerText = "🌍 Yer Çekimi İvmesi: " + data.gravity + " m/s²";
-                    document.getElementById("distance").innerText = "📡 Mesafe: " + data.distance + " cm";
-                })
-                .catch(error => console.error("Hata:", error));
+            margin: 0 0 20px 0;
+            border-radius: 8px;
         }
 
-        setInterval(fetchSensorData, 1000); // Her 1 saniyede bir güncelle
-    </script>
+        img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            border: 3px solid #007bff;
+        }
+    </style>
 </head>
-<body onload="fetchSensorData()">
+<body>
     <div class="container">
-        <div class="video-container">
-            <h1>Canlı Video Akışı</h1>
-            <img src="{{ url_for('video_feed') }}" alt="Canlı Video Akışı">
-            <div class="thermal-container">
-                <h1>Termal Görüntü</h1>
-                <img src="{{ url_for('thermal_feed') }}" alt="Termal Görüntü">
-            </div>
-        </div>
-        <div class="data-container">
-            <div class="box" id="temperature">Sıcaklık: Yükleniyor...</div>
-            <div class="box" id="pressure">Basınç: Yükleniyor...</div>
-            <div class="box" id="altitude">Yükseklik: Yükleniyor...</div>
-            <div class="box" id="euler">Euler Açıları: Yükleniyor...</div>
-            <div class="box" id="acceleration">İvme: Yükleniyor...</div>
-            <div class="box" id="linear_acceleration">Lineer İvme: Yükleniyor...</div>
-            <div class="box" id="quaternion">Quaternion: Yükleniyor...</div>
-            <div class="box" id="angular_velocity">Açısal Hız: Yükleniyor...</div>
-            <div class="box" id="gravity">Yer Çekimi İvmesi: Yükleniyor...</div>
-            <div class="box" id="distance">Mesafe: Yükleniyor...</div>
-        </div>
+        <h1>Canlı Video Akışı</h1>
+        <img src="/video_feed" alt="Canlı Video Akışı">
     </div>
 </body>
 </html>
